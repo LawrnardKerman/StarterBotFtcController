@@ -107,7 +107,7 @@ public class BioBuzzStarterbotTeleopMecanum extends OpMode {
         rightBackDrive = hardwareMap.get(DcMotor.class, "backRight");
         intake = hardwareMap.get(DcMotor.class, "intake");
         launcher = hardwareMap.get(DcMotorEx.class, "launcher");
-        windmillServo = hardwareMap.get(CRServo.class, "windmillServo");
+        windmillServo = hardwareMap.get(CRServo.class, "Windmill servo");
         leftIntakeServo = hardwareMap.get(CRServo.class, "leftWheel");
         rightIntakeServo = hardwareMap.get(CRServo.class, "rightWheel");
 
@@ -119,8 +119,8 @@ public class BioBuzzStarterbotTeleopMecanum extends OpMode {
          * Reduction or 90 Deg drives may require direction flips
          */
         leftFrontDrive.setDirection(DcMotor.Direction.REVERSE);
-        rightFrontDrive.setDirection(DcMotor.Direction.FORWARD);
-        leftBackDrive.setDirection(DcMotor.Direction.REVERSE);
+        rightFrontDrive.setDirection(DcMotor.Direction.REVERSE);
+        leftBackDrive.setDirection(DcMotor.Direction.FORWARD);
         rightBackDrive.setDirection(DcMotor.Direction.FORWARD);
 
         /*
