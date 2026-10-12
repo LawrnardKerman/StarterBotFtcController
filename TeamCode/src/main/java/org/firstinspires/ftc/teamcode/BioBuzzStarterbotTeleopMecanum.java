@@ -224,12 +224,17 @@ public class BioBuzzStarterbotTeleopMecanum extends OpMode {
         intake.setPower(intakePower);
         leftIntakeServo.setPower(intakePower);
         rightIntakeServo.setPower(intakePower);
+        telemetry.addData("intakePower", "power (%.2f)", intakePower);
 
         /*
          * Show motor powers on the Driver Station via telemetry.
          */
+        double currentRPM = (launcher.getVelocity()/ launcher.getMotorType().getTicksPerRev()) * 60.0;
+
         telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftFrontPower, rightFrontPower);
         telemetry.addData("Triggers", "left (%.2f, right (%.2f)",gamepad1.left_trigger, gamepad1.right_trigger);
+        telemetry.addData("Velocity (RPM)", currentRPM);
+
     }
 
     /*
@@ -267,7 +272,7 @@ public class BioBuzzStarterbotTeleopMecanum extends OpMode {
 
     void launch() {
         /*
-         * Calling gamepad1.right_bumper returns a boolean which will be true if the bumper is
+         * rCalling gamepad1.right_bumper returns a boolean which will be true if the bumper is
          * held down, and false if it is not. Notably, this will continue to be true for every
          * cycle of our code that the driver holds down that bumper.
          * The first step of our launch() function is checking to see if the user is currently
@@ -287,7 +292,7 @@ public class BioBuzzStarterbotTeleopMecanum extends OpMode {
          * add some power to the intake power. This can sometimes help dislodge stuck elements from
          * inside the hopper.
          */
-        if (gamepad1.right_bumper && launcher.getVelocity() > LAUNCHER_MIN_VELOCITY) {
+        if (gamepad1.right_bumper && launcher.getVelocity() > LAUNCHER_TARGET_VELOCITY) {
             windmillServo.setPower(1);
             intakePower += 0.5;
         } else {
