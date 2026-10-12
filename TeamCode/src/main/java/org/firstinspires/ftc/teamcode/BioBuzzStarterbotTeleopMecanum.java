@@ -73,7 +73,7 @@ public class BioBuzzStarterbotTeleopMecanum extends OpMode {
      * in the launch() function to only run the windmill servo when the motor is spinning fast
      * enough to make a successful throw.
      */
-    public final int LAUNCHER_TARGET_VELOCITY = 2000;
+    public final int LAUNCHER_TARGET_VELOCITY = 1500;
     public final int LAUNCHER_MIN_VELOCITY = 1200; //2571 RPM
 
 
