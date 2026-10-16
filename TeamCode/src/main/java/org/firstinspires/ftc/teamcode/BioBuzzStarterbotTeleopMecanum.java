@@ -145,7 +145,7 @@ public class BioBuzzStarterbotTeleopMecanum extends OpMode {
         launcher.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         launcher.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, new PIDFCoefficients(40, 0, 0, 12.5));
-
+//pid^ but that was probably apearent(f is feed foward) like f^2 like yeah(ticks per second)
         /*
          * set Feeders to an initial value to initialize the servo controller
          */
@@ -279,10 +279,11 @@ public class BioBuzzStarterbotTeleopMecanum extends OpMode {
          * holding down the right gamepad. If they are, then we want to start spinning up the launcher.
          * Otherwise, we start spinning the launcher down.
          */
-        if (gamepad1.right_bumper) {
+
+        if (gamepad1.left_bumper) {
             launcher.setVelocity(LAUNCHER_TARGET_VELOCITY);
         } else {
-            launcher.setVelocity(0);
+            launcher.setVelocity(LAUNCHER_TARGET_VELOCITY/2);
         }
 
         /*
