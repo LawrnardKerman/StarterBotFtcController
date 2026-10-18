@@ -280,7 +280,7 @@ public class BioBuzzStarterbotTeleopMecanum extends OpMode {
          * Otherwise, we start spinning the launcher down.
          */
 
-        if (gamepad1.left_bumper) {
+        if (gamepad1.right_bumper) {
             launcher.setVelocity(LAUNCHER_TARGET_VELOCITY);
         } else {
             launcher.setVelocity(LAUNCHER_TARGET_VELOCITY/2);
