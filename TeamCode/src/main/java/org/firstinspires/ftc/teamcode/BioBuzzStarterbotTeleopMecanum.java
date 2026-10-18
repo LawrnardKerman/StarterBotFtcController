@@ -48,6 +48,8 @@ import com.qualcomm.robotcore.hardware.PIDFCoefficients;
  */
 
 @TeleOp(name = "Mec BioBuzz StarterBot Teleop", group = "StarterBot")
+
+
 //@Disabled
 public class BioBuzzStarterbotTeleopMecanum extends OpMode {
 
@@ -62,6 +64,10 @@ public class BioBuzzStarterbotTeleopMecanum extends OpMode {
     private CRServo rightIntakeServo = null;
     private CRServo windmillServo = null;
 
+    public static double kP=0.1;
+    public static double kI=0.001;
+    public static double kD=0;
+    public static double kF=12.5;
 
     /*
      * These two variables are used to control the velocity of the launcher motor.
@@ -144,7 +150,7 @@ public class BioBuzzStarterbotTeleopMecanum extends OpMode {
 
         launcher.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        launcher.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, new PIDFCoefficients(40, 0, 0, 12.5));
+        launcher.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, new PIDFCoefficients(kP, kI, kD, kF));
 //pid^ but that was probably apearent(f is feed foward) like f^2 like yeah(ticks per second)
         /*
          * set Feeders to an initial value to initialize the servo controller
@@ -234,6 +240,7 @@ public class BioBuzzStarterbotTeleopMecanum extends OpMode {
         telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftFrontPower, rightFrontPower);
         telemetry.addData("Triggers", "left (%.2f, right (%.2f)",gamepad1.left_trigger, gamepad1.right_trigger);
         telemetry.addData("Velocity (RPM)", currentRPM);
+        telemetry.addData("is update", 1);
 
     }
 
@@ -283,7 +290,7 @@ public class BioBuzzStarterbotTeleopMecanum extends OpMode {
         if (gamepad1.right_bumper) {
             launcher.setVelocity(LAUNCHER_TARGET_VELOCITY);
         } else {
-            launcher.setVelocity(LAUNCHER_TARGET_VELOCITY/2);
+            launcher.setVelocity(LAUNCHER_TARGET_VELOCITY*0.75);
         }
 
         /*
