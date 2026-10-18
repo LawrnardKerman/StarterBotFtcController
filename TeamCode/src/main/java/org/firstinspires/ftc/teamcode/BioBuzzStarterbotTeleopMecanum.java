@@ -68,6 +68,7 @@ public class BioBuzzStarterbotTeleopMecanum extends OpMode {
     public static double kI=0.001;
     public static double kD=0;
     public static double kF=12.5;
+    public static int target=1200;
 
     /*
      * These two variables are used to control the velocity of the launcher motor.
@@ -241,6 +242,7 @@ public class BioBuzzStarterbotTeleopMecanum extends OpMode {
         telemetry.addData("Triggers", "left (%.2f, right (%.2f)",gamepad1.left_trigger, gamepad1.right_trigger);
         telemetry.addData("Velocity (RPM)", currentRPM);
         telemetry.addData("is update", 51);
+        telemetry.addData("target vel", target);
 
     }
 
@@ -288,11 +290,19 @@ public class BioBuzzStarterbotTeleopMecanum extends OpMode {
          */
 
         if (gamepad1.right_bumper) {
-            launcher.setVelocity(LAUNCHER_TARGET_VELOCITY);
+            launcher.setVelocity(target);
         } else {
-            launcher.setVelocity(LAUNCHER_TARGET_VELOCITY*0.75);
+            launcher.setVelocity(target*0.75);
         }
-
+        if(gamepad1.dpad_down){
+            if(target>=1200){
+                target--;
+            }
+        }else if(gamepad1.dpad_up){
+            if(target<=1700) {
+                target++;
+            }
+        }
         /*
          * Here we ask if the driver is currently pressing the right bumper, AND the launcher is
          * spinning fast enough to make a successful shot. If it is, then we will turn on the
