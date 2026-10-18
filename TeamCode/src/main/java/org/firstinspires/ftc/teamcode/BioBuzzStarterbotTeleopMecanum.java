@@ -169,7 +169,7 @@ public class BioBuzzStarterbotTeleopMecanum extends OpMode {
         /*
          * Tell the driver that initialization is complete.
          */
-        telemetry.addData("Status", "Initialized");
+        telemetry.addData("Status", "updated");
     }
 
     /*
