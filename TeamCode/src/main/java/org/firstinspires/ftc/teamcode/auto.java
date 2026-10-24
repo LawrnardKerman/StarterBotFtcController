@@ -13,11 +13,6 @@ public class auto extends OpMode{
     private DcMotor leftBackDrive = null;
     private DcMotor rightFrontDrive = null;
     private DcMotor rightBackDrive = null;
-    private DcMotorEx launcher = null;
-    private DcMotor intake = null;
-    private CRServo leftIntakeServo = null;
-    private CRServo rightIntakeServo = null;
-    private CRServo windmillServo = null;
     double leftFrontPower;
     double rightFrontPower;
     double leftBackPower;
@@ -29,11 +24,6 @@ public class auto extends OpMode{
         rightFrontDrive = hardwareMap.get(DcMotor.class, "frontRight");
         leftBackDrive = hardwareMap.get(DcMotor.class, "backLeft");
         rightBackDrive = hardwareMap.get(DcMotor.class, "backRight");
-        intake = hardwareMap.get(DcMotor.class, "intake");
-        launcher = hardwareMap.get(DcMotorEx.class, "launcher");
-        windmillServo = hardwareMap.get(CRServo.class, "Windmill servo");
-        leftIntakeServo = hardwareMap.get(CRServo.class, "leftWheel");
-        rightIntakeServo = hardwareMap.get(CRServo.class, "rightWheel");
         leftFrontDrive.setDirection(DcMotor.Direction.REVERSE);
         rightFrontDrive.setDirection(DcMotor.Direction.REVERSE);
         leftBackDrive.setDirection(DcMotor.Direction.FORWARD);
@@ -42,10 +32,6 @@ public class auto extends OpMode{
         rightFrontDrive.setZeroPowerBehavior(BRAKE);
         leftBackDrive.setZeroPowerBehavior(BRAKE);
         rightBackDrive.setZeroPowerBehavior(BRAKE);
-        intake.setZeroPowerBehavior(BRAKE);
-        leftIntakeServo.setPower(0);
-        rightIntakeServo.setPower(0);
-        windmillServo.setPower(0);
         telemetry.addData("Status", "auto initialized");
 
 
@@ -59,6 +45,11 @@ public class auto extends OpMode{
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
+            leftFrontDrive.setPower(0);
+            rightFrontDrive.setPower(0);
+            leftBackDrive.setPower(0);
+            rightBackDrive.setPower(0);
+            telemetry.addData("ERROR",e);
             throw new RuntimeException(e);
         }
         leftFrontDrive.setPower(0);
