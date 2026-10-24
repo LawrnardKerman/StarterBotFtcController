@@ -38,12 +38,14 @@ public class auto extends OpMode{
 
 
     }
+    double power=0.4;
+
     @Override
     public void start(){
-        leftFrontDrive.setPower(0.1);
-        rightFrontDrive.setPower(0.1);
-        leftBackDrive.setPower(0.1);
-        rightBackDrive.setPower(0.1);
+        leftFrontDrive.setPower(power);
+        rightFrontDrive.setPower(power);
+        leftBackDrive.setPower(power);
+        rightBackDrive.setPower(power);
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
