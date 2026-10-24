@@ -295,11 +295,11 @@ public class BioBuzzStarterbotTeleopMecanum extends OpMode {
             launcher.setVelocity(target*0.75);
         }
         if(gamepad1.dpad_down){
-            if(target>=1200){
+            if(target>1200){
                 target--;
             }
         }else if(gamepad1.dpad_up){
-            if(target<=1700) {
+            if(target<1700) {
                 target++;
             }
         }
